@@ -6,6 +6,7 @@ import {
   NotFoundException,
   Param,
   ParseIntPipe,
+  ParseUUIDPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -21,7 +22,7 @@ export class CarsController {
   }
 
   @Get(':id')
-  getCarById(@Param('id') id: string) {
+  getCarById(@Param('id', ParseUUIDPipe) id: string) {
     const car = this.carService.findOneById(id);
     if (!car) throw new NotFoundException(`Car with id: ${id}, not found!`);
     return car;
@@ -33,12 +34,12 @@ export class CarsController {
   }
 
   @Patch(':id')
-  updateCar(@Param('id') id: string, @Body() body: any) {
+  updateCar(@Param('id', ParseUUIDPipe) id: string, @Body() body: any) {
     return { id, body };
   }
 
   @Delete(':id')
-  deleteCar(@Param('id', ParseIntPipe) id: number) {
+  deleteCar(@Param('id', ParseUUIDPipe) id: string) {
     return { method: 'delete', id };
   }
 }
