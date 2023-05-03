@@ -5,12 +5,14 @@ import {
   Get,
   NotFoundException,
   Param,
-  ParseIntPipe,
   ParseUUIDPipe,
   Patch,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
+import { CreateCarDto } from './dtos/create-car.dto';
 
 @Controller('cars')
 export class CarsController {
@@ -29,8 +31,8 @@ export class CarsController {
   }
 
   @Post()
-  createCar(@Body() body: any) {
-    return body;
+  createCar(@Body() createCarDto: CreateCarDto) {
+    return createCarDto;
   }
 
   @Patch(':id')

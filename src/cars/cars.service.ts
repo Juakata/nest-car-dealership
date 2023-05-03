@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ICars } from './cars.interface';
+import { ICars } from './interfaces/cars.interface';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
