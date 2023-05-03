@@ -21,7 +21,7 @@ export class CarsController {
   }
 
   @Get(':id')
-  getCarById(@Param('id', ParseIntPipe) id: number) {
+  getCarById(@Param('id') id: string) {
     const car = this.carService.findOneById(id);
     if (!car) throw new NotFoundException(`Car with id: ${id}, not found!`);
     return car;
@@ -33,7 +33,7 @@ export class CarsController {
   }
 
   @Patch(':id')
-  updateCar(@Param('id', ParseIntPipe) id: number, @Body() body: any) {
+  updateCar(@Param('id') id: string, @Body() body: any) {
     return { id, body };
   }
 
