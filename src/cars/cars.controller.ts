@@ -8,8 +8,6 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto, UpdateCarDto } from './dtos';
@@ -25,9 +23,7 @@ export class CarsController {
 
   @Get(':id')
   getCarById(@Param('id', ParseUUIDPipe) id: string) {
-    const car = this.carService.findOneById(id);
-    if (!car) throw new NotFoundException(`Car with id: ${id}, not found!`);
-    return car;
+    return this.carService.findOneById(id);
   }
 
   @Post()
@@ -45,6 +41,6 @@ export class CarsController {
 
   @Delete(':id')
   deleteCar(@Param('id', ParseUUIDPipe) id: string) {
-    return { method: 'delete', id };
+    return this.carService.deleteCar(id);
   }
 }
