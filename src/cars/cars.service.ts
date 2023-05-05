@@ -43,7 +43,8 @@ export class CarsService {
     return carDb;
   }
 
-  fillCarsWithSeedData() {
+  fillCarsWithSeedData(cars: Cars[]) {
+    this.cars = cars;
     return 'Filling';
   }
 }
